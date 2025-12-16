@@ -1,167 +1,140 @@
+// DualGrasperTool.cs
+// - Drives jaws from an InputAction float
+// - Full open = 60 deg (total opening between jaws), full closed = 0 deg
+// - When opening angle < 30 deg: emulate "button held" by setting haptic.bIsGrabbing=true continuously
+// - When opening angle >= 30 deg: emulate "button released" by setting haptic.bIsRelease=true
+// - Keeps exclusive-grab logic
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DualGrasperTool : MonoBehaviour
 {
     [Header("Plugin")]
     public HapticPlugin haptic;
 
+    [Header("Input (float action)")]
+    public InputActionReference jawInput;
+
+    [Tooltip("Raw input value at fully OPEN. Example: -1 for a joystick axis.")]
+    public float inputAtOpen = -1f;
+
+    [Tooltip("Raw input value at fully CLOSED. Example: +1 for a joystick axis.")]
+    public float inputAtClosed = +1f;
+
+    [Tooltip("If your action is already 0..1, set inputAtOpen=0, inputAtClosed=1.")]
+    [Range(0f, 0.2f)] public float inputDeadzone = 0.02f;
+
     [Header("Jaws")]
-    public Transform upperJaw;   // grasper_up
-    public Transform lowerJaw;   // grasper_down
+    public Transform upperJaw;
+    public Transform lowerJaw;
 
     [Header("Jaw motion")]
-    public Vector3 localAxis = Vector3.forward; // change if needed
-    public float openAngleDeg = 45f;
-    public float closedAngleDeg = 0f;
-    public float speed = 16f;
+    public Vector3 localAxis = Vector3.forward;
+    public float openAngleDeg = 60f;      // total opening between jaws
+    public float closedAngleDeg = 0f;     // total opening between jaws
+    public float speedDegPerSec = 720f;
 
-    [Header("External joystick control (Legacy Input Manager)")]
-    public string joystickAxisName = "Grip";  // Project Settings > Input Manager axis name
-    public bool invertAxis = false;
-    [Range(0f, 1f)] public float deadzone = 0.05f;
+    [Header("Grab logic")]
+    public float grabWhenBelowDeg = 30f;
 
-    [Header("Grab gating")]
-    public float grabAngleThresholdDeg = 30f; // under this = grab
-    public float releaseAngleThresholdDeg = 33f; // hysteresis to avoid chatter
-
-    [Header("Logging")]
-    public PegTransferHapticLogger3DS logger;
-    public int deviceIndex; // 0 or 1
-
-    bool wasGrabbingActive = false;
-    bool grabCommanded = false;
-
-    float currentAngle;
+    float currentOpenDeg;
     GameObject lastGrabbed;
 
     void Awake()
     {
         if (!haptic) haptic = GetComponent<HapticPlugin>();
-        currentAngle = openAngleDeg;
     }
 
-    void Update()
+    void OnEnable()
     {
-        DriveJawsFromJoystick();
-        DriveGrabFromAngle();
+        if (jawInput && jawInput.action != null) jawInput.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        if (jawInput && jawInput.action != null) jawInput.action.Disable();
+    }
+
+    void FixedUpdate()
+    {
+        DriveJawsFromInput_Fixed();
+        DriveGrabLikeHeldButton_Fixed();
         EnforceExclusiveGrab();
     }
 
-    float ReadGrip01()
+    float ReadNormalizedJaw()
     {
         float v = 0f;
-        if (!string.IsNullOrEmpty(joystickAxisName))
+        if (jawInput && jawInput.action != null)
+            v = jawInput.action.ReadValue<float>();
+
+        // deadzone on raw value relative to range
+        float range = Mathf.Abs(inputAtClosed - inputAtOpen);
+        if (range > 1e-6f)
         {
-            v = Input.GetAxis(joystickAxisName); // expected [-1..+1] or [0..1] depending on setup
+            float centered = Mathf.Abs(v - inputAtOpen) / range;
+            if (centered < inputDeadzone) v = inputAtOpen;
         }
 
-        if (invertAxis) v = -v;
-
-        // normalize to [0..1] robustly
-        // if axis is [-1..+1], map -> [0..1]; if already [0..1], this still behaves ok
-        float grip01 = Mathf.InverseLerp(-1f, 1f, v);
-
-        // deadzone
-        if (grip01 < deadzone) grip01 = 0f;
-        if (grip01 > 1f - deadzone) grip01 = 1f;
-
-        return grip01;
+        // normalize to 0..1 where 0=open, 1=closed
+        float t = Mathf.InverseLerp(inputAtOpen, inputAtClosed, v);
+        return Mathf.Clamp01(t);
     }
 
-    void DriveJawsFromJoystick()
+    void DriveJawsFromInput_Fixed()
     {
-        if (!haptic || !upperJaw || !lowerJaw) return;
+        if (!upperJaw || !lowerJaw) return;
 
-        float grip01 = ReadGrip01(); // 0=open, 1=closed
-        float desiredAngle = Mathf.Lerp(openAngleDeg, closedAngleDeg, grip01);
+        float tClosed = ReadNormalizedJaw(); // 0=open, 1=closed
+        float targetOpenDeg = Mathf.Lerp(openAngleDeg, closedAngleDeg, tClosed);
 
-        currentAngle = Mathf.MoveTowards(currentAngle, desiredAngle, speed * Time.deltaTime * 60f);
+        currentOpenDeg = Mathf.MoveTowards(
+            currentOpenDeg,
+            targetOpenDeg,
+            speedDegPerSec * Time.fixedDeltaTime
+        );
 
-        Quaternion qUp = Quaternion.AngleAxis(+currentAngle, localAxis.normalized);
-        Quaternion qDn = Quaternion.AngleAxis(-currentAngle, localAxis.normalized);
+        float half = 0.5f * currentOpenDeg;
+        Quaternion qUp = Quaternion.AngleAxis(+half, localAxis.normalized);
+        Quaternion qDn = Quaternion.AngleAxis(-half, localAxis.normalized);
 
         upperJaw.localRotation = qUp;
         lowerJaw.localRotation = qDn;
     }
 
-    void DriveGrabFromAngle()
+    void DriveGrabLikeHeldButton_Fixed()
     {
         if (!haptic) return;
 
-        // Hysteresis: grab below grabAngleThresholdDeg, release above releaseAngleThresholdDeg
-        bool wantGrab;
-        if (!grabCommanded)
-            wantGrab = (currentAngle <= grabAngleThresholdDeg);
-        else
-            wantGrab = (currentAngle <= releaseAngleThresholdDeg);
+        // Emulate plugin "hold button" behavior:
+        // if held: bIsGrabbing=true, bIsRelease=false
+        // else:    bIsGrabbing=false, bIsRelease=true
+        bool closedEnough = currentOpenDeg < grabWhenBelowDeg;
 
-        if (wantGrab == grabCommanded) return;
-        grabCommanded = wantGrab;
-
-        if (grabCommanded)
-        {
-            // Try common plugin entry points without hard dependency on exact method name
-            SendMessage("Hold_Object", SendMessageOptions.DontRequireReceiver);
-            SendMessage("Grab_Object", SendMessageOptions.DontRequireReceiver);
-            // Some plugins expose a public method on haptic directly; keep Release_Object usage symmetric
-            // If your plugin uses a different method name, add another SendMessage here.
-        }
-        else
-        {
-            // You already use this in your current script
-            haptic.Release_Object();
-        }
+        haptic.bIsGrabbing = closedEnough;
+        haptic.bIsRelease = !closedEnough;
     }
 
     void EnforceExclusiveGrab()
     {
         if (!haptic) return;
 
-        bool isGrabbingNow = haptic.bIsGrabbingActive && haptic.GrabObject != null;
-
-        // --- GRAB BEGIN ---
-        if (isGrabbingNow && !wasGrabbingActive)
-        {
-            GameObject obj = haptic.GrabObject;
-            int ringId = obj.GetInstanceID();
-
-            if (logger)
-            {
-                logger.SetHolding(deviceIndex, true, ringId);
-                logger.LogEvent(deviceIndex, PegTransferHapticLogger3DS.EventCode.GRAB_BEGIN);
-            }
-        }
-
-        // --- GRAB END ---
-        if (!isGrabbingNow && wasGrabbingActive)
-        {
-            if (logger)
-            {
-                logger.SetHolding(deviceIndex, false, -1);
-                logger.LogEvent(deviceIndex, PegTransferHapticLogger3DS.EventCode.GRAB_END);
-            }
-        }
-
-        wasGrabbingActive = isGrabbingNow;
-
-        // ---------------- EXISTING EXCLUSIVE-LOCK LOGIC ----------------
-        if (!isGrabbingNow)
+        if (!haptic.bIsGrabbingActive || haptic.GrabObject == null)
         {
             if (lastGrabbed != null)
             {
                 var lockComp = lastGrabbed.GetComponent<SharedGrabLock>();
-                if (lockComp && lockComp.holder == haptic)
-                    lockComp.holder = null;
-
+                if (lockComp && lockComp.holder == haptic) lockComp.holder = null;
                 lastGrabbed = null;
             }
             return;
         }
 
-        GameObject objNow = haptic.GrabObject;
+        GameObject obj = haptic.GrabObject;
 
-        var grabLock = objNow.GetComponent<SharedGrabLock>();
-        if (!grabLock) grabLock = objNow.AddComponent<SharedGrabLock>();
+        var grabLock = obj.GetComponent<SharedGrabLock>();
+        if (!grabLock) grabLock = obj.AddComponent<SharedGrabLock>();
 
         if (grabLock.holder != null && grabLock.holder != haptic)
         {
@@ -170,6 +143,6 @@ public class DualGrasperTool : MonoBehaviour
         }
 
         grabLock.holder = haptic;
-        lastGrabbed = objNow;
+        lastGrabbed = obj;
     }
 }

@@ -1,0 +1,54 @@
+{
+    "name": "JoystickActions",
+    "maps": [
+        {
+            "name": "Joystick",
+            "id": "7ae2c8b7-8867-4541-ae70-477db8af2d9b",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Value",
+                    "id": "5e2e5499-9c2b-44d6-8e64-09d6cb815b12",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Right",
+                    "type": "Value",
+                    "id": "8140ddd6-d949-41b1-8b0b-bdeacaf058b8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ac846b58-753a-4310-8011-f92b5ebeebef",
+                    "path": "<HID::STMicroelectronics STM32 MagicBox6>/rx",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33e1da07-bc40-4671-9d42-2e3d9802609f",
+                    "path": "<HID::STMicroelectronics STM32 MagicBox6>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

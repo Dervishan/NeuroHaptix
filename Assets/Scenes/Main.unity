@@ -2067,7 +2067,7 @@ MonoBehaviour:
   MagForce: 0
   JointAngles: {x: 0, y: 0, z: 0}
   GimbalAngles: {x: 0, y: 0, z: 0}
-  SimpleButtons: 1
+  SimpleButtons: 0
   labelOnly: 
   bButton1g: 0
   bButton1r: 0
@@ -2079,35 +2079,10 @@ MonoBehaviour:
   Events:
     OnClickButton1:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1546514661}
-          m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_MethodName: set_text
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: You can move a ring with left tool.
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     OnReleaseButton1:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1546514661}
-          m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_MethodName: set_text
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 'Use the stylus to push the rings and interact with
-              them. '
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     OnHoldButton1:
       m_PersistentCalls:
         m_Calls: []
@@ -2476,14 +2451,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   haptic: {fileID: 877731046}
+  jawInput: {fileID: 4400498901968557261, guid: 4a0faf506c1c32b44a0fac1740e421ba, type: 3}
+  inputAtOpen: -1
+  inputAtClosed: 1
+  inputDeadzone: 0.02
   upperJaw: {fileID: 534187165}
   lowerJaw: {fileID: 534187164}
   localAxis: {x: 1, y: 0, z: 0}
-  openAngleDeg: 30
-  closedAngleDeg: 10
-  speed: 16
-  logger: {fileID: 2142381720}
-  deviceIndex: 1
+  openAngleDeg: 60
+  closedAngleDeg: 0
+  speedDegPerSec: 720
+  grabWhenBelowDeg: 30
 --- !u!114 &608546520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3426,7 +3404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &839193595
 Transform:
   m_ObjectHideFlags: 0
@@ -3660,7 +3638,7 @@ MonoBehaviour:
   MagForce: 0
   JointAngles: {x: 0, y: 0, z: 0}
   GimbalAngles: {x: 0, y: 0, z: 0}
-  SimpleButtons: 1
+  SimpleButtons: 0
   labelOnly: 
   bButton1g: 0
   bButton1r: 0
@@ -3672,35 +3650,10 @@ MonoBehaviour:
   Events:
     OnClickButton1:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1546514661}
-          m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_MethodName: set_text
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: You can move a ring with right tool.
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     OnReleaseButton1:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1546514661}
-          m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_MethodName: set_text
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 'Use the stylus to push the rings and interact with
-              them. '
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     OnHoldButton1:
       m_PersistentCalls:
         m_Calls: []
@@ -4744,14 +4697,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   haptic: {fileID: 430507925}
+  jawInput: {fileID: -794729907115712011, guid: 4a0faf506c1c32b44a0fac1740e421ba, type: 3}
+  inputAtOpen: -1
+  inputAtClosed: 1
+  inputDeadzone: 0.02
   upperJaw: {fileID: 1076777098}
   lowerJaw: {fileID: 1076777097}
   localAxis: {x: 1, y: 0, z: 0}
-  openAngleDeg: 30
-  closedAngleDeg: 10
-  speed: 16
-  logger: {fileID: 2142381720}
-  deviceIndex: 0
+  openAngleDeg: 60
+  closedAngleDeg: 0
+  speedDegPerSec: 720
+  grabWhenBelowDeg: 30
 --- !u!1001 &1080853385
 PrefabInstance:
   m_ObjectHideFlags: 0
