@@ -15,6 +15,12 @@ public class DualGrasperTool : MonoBehaviour
     public float closedAngleDeg = 0f;
     public float speed = 16f;
 
+    [Header("Logging")]
+    public PegTransferHapticLogger3DS logger;
+    public int deviceIndex; // 0 or 1
+
+    bool wasGrabbingActive = false;
+
     float currentAngle;
     GameObject lastGrabbed;
 
@@ -49,32 +55,61 @@ public class DualGrasperTool : MonoBehaviour
     {
         if (!haptic) return;
 
-        // If not actively holding anything, clear lock if we were holder
-        if (!haptic.bIsGrabbingActive || haptic.GrabObject == null)
+        bool isGrabbingNow = haptic.bIsGrabbingActive && haptic.GrabObject != null;
+
+        // --- GRAB BEGIN ---
+        if (isGrabbingNow && !wasGrabbingActive)
+        {
+            GameObject obj = haptic.GrabObject;
+            int ringId = obj.GetInstanceID();
+
+            if (logger)
+            {
+                logger.SetHolding(deviceIndex, true, ringId);
+                logger.LogEvent(deviceIndex, PegTransferHapticLogger3DS.EventCode.GRAB_BEGIN);
+            }
+        }
+
+        // --- GRAB END ---
+        if (!isGrabbingNow && wasGrabbingActive)
+        {
+            if (logger)
+            {
+                logger.SetHolding(deviceIndex, false, -1);
+                logger.LogEvent(deviceIndex, PegTransferHapticLogger3DS.EventCode.GRAB_END);
+            }
+        }
+
+        wasGrabbingActive = isGrabbingNow;
+
+        // ---------------- EXISTING EXCLUSIVE-LOCK LOGIC ----------------
+
+        if (!isGrabbingNow)
         {
             if (lastGrabbed != null)
             {
                 var lockComp = lastGrabbed.GetComponent<SharedGrabLock>();
-                if (lockComp && lockComp.holder == haptic) lockComp.holder = null;
+                if (lockComp && lockComp.holder == haptic)
+                    lockComp.holder = null;
+
                 lastGrabbed = null;
             }
             return;
         }
 
-        GameObject obj = haptic.GrabObject;
+        GameObject objNow = haptic.GrabObject;
 
-        var grabLock = obj.GetComponent<SharedGrabLock>();
-        if (!grabLock) grabLock = obj.AddComponent<SharedGrabLock>();
+        var grabLock = objNow.GetComponent<SharedGrabLock>();
+        if (!grabLock) grabLock = objNow.AddComponent<SharedGrabLock>();
 
-        // If the other tool already holds this object, force it to release
         if (grabLock.holder != null && grabLock.holder != haptic)
         {
-            grabLock.holder.Release_Object();   // calls plugin release path
+            grabLock.holder.Release_Object();
             grabLock.holder = null;
         }
 
-        // Claim ownership
         grabLock.holder = haptic;
-        lastGrabbed = obj;
+        lastGrabbed = objNow;
     }
+
 }

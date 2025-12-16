@@ -944,6 +944,7 @@ GameObject:
   - component: {fileID: 188765094}
   - component: {fileID: 188765093}
   - component: {fileID: 188765096}
+  - component: {fileID: 188765097}
   m_Layer: 0
   m_Name: Cylinder (10)
   m_TagString: Untagged
@@ -1066,6 +1067,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &188765097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188765091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &200783185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1109,7 @@ GameObject:
   - component: {fileID: 200783188}
   - component: {fileID: 200783187}
   - component: {fileID: 200783190}
+  - component: {fileID: 200783191}
   m_Layer: 0
   m_Name: Cylinder (9)
   m_TagString: Untagged
@@ -1201,6 +1232,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &200783191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200783185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &251042228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,8 +1291,8 @@ Transform:
   m_GameObject: {fileID: 251042228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0161}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1669,8 +1729,8 @@ Transform:
   m_GameObject: {fileID: 317681639}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0161}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -2422,6 +2482,8 @@ MonoBehaviour:
   openAngleDeg: 30
   closedAngleDeg: 10
   speed: 16
+  logger: {fileID: 2142381720}
+  deviceIndex: 1
 --- !u!114 &608546520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2596,6 +2658,7 @@ GameObject:
   - component: {fileID: 709683232}
   - component: {fileID: 709683231}
   - component: {fileID: 709683234}
+  - component: {fileID: 709683235}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -2718,6 +2781,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &709683235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709683229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &756192406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3368,6 +3460,7 @@ GameObject:
   - component: {fileID: 847893612}
   - component: {fileID: 847893611}
   - component: {fileID: 847893614}
+  - component: {fileID: 847893615}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -3490,6 +3583,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &847893615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847893609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &877731045
 GameObject:
   m_ObjectHideFlags: 0
@@ -4628,6 +4750,8 @@ MonoBehaviour:
   openAngleDeg: 30
   closedAngleDeg: 10
   speed: 16
+  logger: {fileID: 2142381720}
+  deviceIndex: 0
 --- !u!1001 &1080853385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4819,6 +4943,7 @@ GameObject:
   - component: {fileID: 1197221964}
   - component: {fileID: 1197221963}
   - component: {fileID: 1197221966}
+  - component: {fileID: 1197221967}
   m_Layer: 0
   m_Name: Cylinder (7)
   m_TagString: Untagged
@@ -4941,6 +5066,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1197221967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197221961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &1200049751
 GameObject:
   m_ObjectHideFlags: 0
@@ -4954,6 +5108,7 @@ GameObject:
   - component: {fileID: 1200049754}
   - component: {fileID: 1200049753}
   - component: {fileID: 1200049756}
+  - component: {fileID: 1200049757}
   m_Layer: 0
   m_Name: Cylinder (3)
   m_TagString: Untagged
@@ -5076,6 +5231,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1200049757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200049751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &1286998555
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5273,7 @@ GameObject:
   - component: {fileID: 1286998558}
   - component: {fileID: 1286998557}
   - component: {fileID: 1286998560}
+  - component: {fileID: 1286998561}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -5211,6 +5396,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1286998561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286998555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &1317578314
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,6 +5438,7 @@ GameObject:
   - component: {fileID: 1317578317}
   - component: {fileID: 1317578316}
   - component: {fileID: 1317578319}
+  - component: {fileID: 1317578320}
   m_Layer: 0
   m_Name: Cylinder (6)
   m_TagString: Untagged
@@ -5346,6 +5561,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1317578320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317578314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1001 &1337572149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5457,6 +5701,7 @@ GameObject:
   - component: {fileID: 1447686558}
   - component: {fileID: 1447686557}
   - component: {fileID: 1447686560}
+  - component: {fileID: 1447686561}
   m_Layer: 0
   m_Name: Cylinder (8)
   m_TagString: Untagged
@@ -5579,6 +5824,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1447686561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447686555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1001 &1492372478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7439,6 +7713,7 @@ GameObject:
   - component: {fileID: 1614690127}
   - component: {fileID: 1614690126}
   - component: {fileID: 1614690129}
+  - component: {fileID: 1614690130}
   m_Layer: 0
   m_Name: Cylinder (11)
   m_TagString: Untagged
@@ -7561,6 +7836,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1614690130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614690124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1 &1639922761
 GameObject:
   m_ObjectHideFlags: 0
@@ -7574,6 +7878,7 @@ GameObject:
   - component: {fileID: 1639922764}
   - component: {fileID: 1639922763}
   - component: {fileID: 1639922766}
+  - component: {fileID: 1639922767}
   m_Layer: 0
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -7696,6 +8001,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1639922767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639922761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!114 &1662254598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8042,6 +8376,52 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &2007157195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007157197}
+  - component: {fileID: 2007157196}
+  m_Layer: 0
+  m_Name: Logger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2007157196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007157195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c2bb12c39fb2c4d875852e702b81a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlushInterval: 0.5
+  AutoFlushEnabled: 1
+--- !u!4 &2007157197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007157195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.085484, y: 9.69952, z: 1.2729282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019811319
 GameObject:
   m_ObjectHideFlags: 0
@@ -8055,6 +8435,7 @@ GameObject:
   - component: {fileID: 2019811322}
   - component: {fileID: 2019811321}
   - component: {fileID: 2019811324}
+  - component: {fileID: 2019811325}
   m_Layer: 0
   m_Name: Cylinder (5)
   m_TagString: Untagged
@@ -8177,6 +8558,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &2019811325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019811319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0.201
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0.175
+  hFrictionD: 0.045
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 7
 --- !u!1001 &2057419879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9069,6 +9479,58 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &2142381719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142381721}
+  - component: {fileID: 2142381720}
+  m_Layer: 0
+  m_Name: HapticLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2142381720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142381719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448d44836831cf4419aed08612acfd99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  device0:
+    deviceLabel: left_device
+    plugin: {fileID: 430507925}
+  device1:
+    deviceLabel: right_device
+    plugin: {fileID: 877731046}
+  subfolder: HapticLogs
+  flushEveryNLines: 256
+--- !u!4 &2142381721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142381719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.085484, y: 9.69952, z: 1.2729282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450651642616716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37e42ffc804aaef47a06e2571b491922, type: 3}
@@ -9134,3 +9596,5 @@ SceneRoots:
   - {fileID: 534187162}
   - {fileID: 317681640}
   - {fileID: 251042229}
+  - {fileID: 2007157197}
+  - {fileID: 2142381721}
