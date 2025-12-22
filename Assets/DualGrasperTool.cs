@@ -95,7 +95,7 @@ public class DualGrasperTool : MonoBehaviour
             speedDegPerSec * Time.fixedDeltaTime
         );
 
-        float half = 0.5f * currentOpenDeg;
+        float half = /*0.5f **/ currentOpenDeg;
         Quaternion qUp = Quaternion.AngleAxis(+half, localAxis.normalized);
         Quaternion qDn = Quaternion.AngleAxis(-half, localAxis.normalized);
 

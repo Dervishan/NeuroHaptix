@@ -30,7 +30,7 @@
                     "id": "ac846b58-753a-4310-8011-f92b5ebeebef",
                     "path": "<HID::STMicroelectronics STM32 MagicBox6>/rx",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Invert",
                     "groups": "",
                     "action": "Left",
                     "isComposite": false,
